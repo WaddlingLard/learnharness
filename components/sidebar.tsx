@@ -318,13 +318,13 @@ export function SessionRow({
 				    rule, finally applied to the picker too (owner, typography
 				    round): mono = chrome, Source Sans = human words. */}
 				<span className="block truncate font-prose text-(length:--lh-prose-size)">{chat.title}</span>
-				<span className="block text-xs text-muted-foreground">{sessionMeta(chat)}</span>
+				<span className="block text-xs text-font-color-muted-foreground">{sessionMeta(chat)}</span>
 			</span>
 			{/* The dumbbell rides the FAR RIGHT (owner round 6, 2026-10-05) —
 			    was left of the name; right-aligned keeps the titles flush with
 			    the teaching rows and reads cleaner. */}
 			{(chat.kind ?? "teach") === "practice" && (
-				<DumbbellIcon className="size-3.5 shrink-0 text-muted-foreground/70" aria-label="Practice session" />
+				<DumbbellIcon className="size-3.5 shrink-0 text-font-color-muted-foreground/70" aria-label="Practice session" />
 			)}
 		</button>
 	);
@@ -372,9 +372,9 @@ export function RenameRow({ chat, onCommit, onCancel }: { chat: ChatListItem; on
 					}}
 					aria-label="Rename session"
 					data-testid="session-rename-input"
-					className="lh-input w-full min-w-0 truncate border-0 border-b border-border bg-transparent px-0 text-foreground outline-none"
+					className="lh-input w-full min-w-0 truncate border-0 border-b border-border bg-transparent px-0 text-font-color-foreground outline-none"
 				/>
-				<span className="block truncate text-xs text-muted-foreground">{sessionMeta(chat)}</span>
+				<span className="block truncate text-xs text-font-color-muted-foreground">{sessionMeta(chat)}</span>
 			</span>
 		</div>
 	);
@@ -671,7 +671,7 @@ function SessionsSidebar() {
 						<Link
 							href="/"
 							aria-label="Home"
-							className="lh-no-drag flex size-9 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50"
+							className="lh-no-drag flex size-9 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-accent hover:text-font-color-accent-foreground dark:hover:bg-accent/50"
 						>
 							<LhMark className="size-6" />
 						</Link>
@@ -698,7 +698,7 @@ function SessionsSidebar() {
 						type="button"
 						data-testid="new-session"
 						onClick={() => void newSession()}
-						className="flex w-full items-center gap-1.5 rounded-md px-2 py-1.5 text-xs uppercase tracking-wider text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+						className="flex w-full items-center gap-1.5 rounded-md px-2 py-1.5 text-xs uppercase tracking-wider text-font-color-muted-foreground transition-colors hover:bg-accent hover:text-font-color-foreground"
 					>
 						<PlusIcon className="size-3" />
 						Teaching
@@ -708,7 +708,7 @@ function SessionsSidebar() {
 						type="button"
 						data-testid="new-session-practice"
 						onClick={() => router.push("/chat/new?mode=practice")}
-						className="flex w-full items-center gap-1.5 rounded-md px-2 py-1.5 text-xs uppercase tracking-wider text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+						className="flex w-full items-center gap-1.5 rounded-md px-2 py-1.5 text-xs uppercase tracking-wider text-font-color-muted-foreground transition-colors hover:bg-accent hover:text-font-color-foreground"
 					>
 						<DumbbellIcon className="size-3" />
 						Practice
@@ -717,7 +717,7 @@ function SessionsSidebar() {
 				</div>
 
 				<div className="mx-3 mb-2 flex items-center gap-2">
-					<span className="text-xs uppercase tracking-widest text-muted-foreground/70">Sessions</span>
+					<span className="text-xs uppercase tracking-widest text-font-color-muted-foreground/70">Sessions</span>
 					<Hint label="Search sessions" action="sessions-search" side="bottom">
 					<span className="relative flex-1">
 						<Input
@@ -770,9 +770,9 @@ function SessionsSidebar() {
 							}}
 							placeholder="Search…"
 							aria-label="Search sessions"
-							className="h-6 rounded-sm border-border bg-background pl-6 text-xs placeholder:text-muted-foreground/60"
+							className="h-6 rounded-sm border-border bg-background pl-6 text-xs placeholder:text-font-color-muted-foreground/60"
 						/>
-						<SearchIcon className="pointer-events-none absolute left-1.5 top-1/2 size-3 -translate-y-1/2 text-muted-foreground/70" />
+						<SearchIcon className="pointer-events-none absolute left-1.5 top-1/2 size-3 -translate-y-1/2 text-font-color-muted-foreground/70" />
 					</span>
 					</Hint>
 				</div>
@@ -794,8 +794,8 @@ function SessionsSidebar() {
 							className={cn(
 								"flex-1 rounded-sm px-2 py-1 text-[11px] uppercase tracking-wider transition-colors",
 								kindFilter === f
-									? "bg-accent text-foreground"
-									: "text-muted-foreground hover:text-foreground",
+									? "bg-accent text-font-color-foreground"
+									: "text-font-color-muted-foreground hover:text-font-color-foreground",
 							)}
 						>
 							{f === "teach" ? "Teaching" : f === "all" ? "All" : "Practice"}
@@ -805,9 +805,9 @@ function SessionsSidebar() {
 
 				<div ref={listRef} className="flex-1 overflow-y-auto p-2">
 					{shown === null ? (
-						<div className="px-2 py-4 text-xs text-muted-foreground">Loading…</div>
+						<div className="px-2 py-4 text-xs text-font-color-muted-foreground">Loading…</div>
 					) : shown.length === 0 ? (
-						<div className="px-2 py-4 text-xs text-muted-foreground">
+						<div className="px-2 py-4 text-xs text-font-color-muted-foreground">
 							{query.trim() ? "No sessions match." : "No sessions yet."}
 						</div>
 					) : (
@@ -852,7 +852,7 @@ function SessionsSidebar() {
 								type="button"
 								onClick={() => openSettings()}
 								data-testid="settings-entry"
-								className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs uppercase tracking-wider text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+								className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs uppercase tracking-wider text-font-color-muted-foreground transition-colors hover:bg-accent hover:text-font-color-foreground"
 							>
 								<SettingsIcon className="size-3" />
 								Settings
@@ -885,7 +885,7 @@ function SessionsSidebar() {
 								setRenamingId(ctxChatId);
 								setCtxChatId(null);
 							}}
-							className="flex items-center rounded-lg px-2.5 py-1.5 text-left text-foreground transition-colors hover:bg-accent"
+							className="flex items-center rounded-lg px-2.5 py-1.5 text-left text-font-color-foreground transition-colors hover:bg-accent"
 						>
 							Rename
 						</button>
@@ -907,7 +907,7 @@ function SessionsSidebar() {
 								a.click();
 								a.remove();
 							}}
-							className="flex items-center rounded-lg px-2.5 py-1.5 text-left text-foreground transition-colors hover:bg-accent"
+							className="flex items-center rounded-lg px-2.5 py-1.5 text-left text-font-color-foreground transition-colors hover:bg-accent"
 						>
 							Export as Markdown…
 						</button>
@@ -919,7 +919,7 @@ function SessionsSidebar() {
 								if (target) setDeleting(target);
 								setCtxChatId(null);
 							}}
-							className="flex items-center rounded-lg px-2.5 py-1.5 text-left text-muted-foreground/80 transition-colors hover:bg-accent hover:text-foreground"
+							className="flex items-center rounded-lg px-2.5 py-1.5 text-left text-font-color-muted-foreground/80 transition-colors hover:bg-accent hover:text-font-color-foreground"
 						>
 							Delete…
 						</button>

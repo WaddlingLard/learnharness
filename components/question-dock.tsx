@@ -132,7 +132,7 @@ export function QuestionDock({
 		canonical === "quiz" ? parseQuizInput(input) : canonical === "explain" ? parseExplainInput(input) : parseAskInput(input);
 	if (!parsed) {
 		return (
-			<div data-testid="malformed-question" className="rounded-xl border border-dashed bg-card/60 p-3 text-sm text-muted-foreground">
+			<div data-testid="malformed-question" className="rounded-xl border border-dashed bg-card/60 p-3 text-sm text-font-color-muted-foreground">
 				This question arrived malformed — the transcript keeps the retry.
 			</div>
 		);
@@ -218,14 +218,14 @@ export function QuestionDockBar({
 				onClick={onExpand}
 				className="dock-variant flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-accent/40"
 			>
-				<span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+				<span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/15 text-font-color-primary">
 					<PlayIcon className="size-3.5" />
 				</span>
 				<span className="min-w-0 flex-1">
 					<span className="block text-sm font-medium">Check your understanding</span>
-					<span className="block truncate text-xs text-muted-foreground">{teaserText(question)}</span>
+					<span className="block truncate text-xs text-font-color-muted-foreground">{teaserText(question)}</span>
 				</span>
-				<span className="flex shrink-0 items-center gap-1 text-xs font-medium text-primary">
+				<span className="flex shrink-0 items-center gap-1 text-xs font-medium text-font-color-primary">
 					Open <ChevronRightIcon className="size-3.5" />
 				</span>
 			</button>
@@ -238,12 +238,12 @@ export function QuestionDockBar({
 			onClick={onExpand}
 			className="dock-variant flex w-full items-center gap-2.5 px-4 py-2.5 text-left text-sm transition-colors hover:bg-accent/40"
 		>
-			<span className="shrink-0 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+			<span className="shrink-0 text-xs font-medium uppercase tracking-wide text-font-color-muted-foreground">
 				{label ??
 							toolLabel ??
 							(toolName === "quiz" ? "Check" : toolName === "explain" ? "Explain" : "Question")}
 			</span>
-			<span className="min-w-0 flex-1 truncate text-muted-foreground">{teaserText(question)}</span>
+			<span className="min-w-0 flex-1 truncate text-font-color-muted-foreground">{teaserText(question)}</span>
 			<span className="flex shrink-0 items-center gap-1 text-xs font-medium">
 				Answer <ArrowDownIcon className="size-3.5" />
 			</span>
@@ -565,7 +565,7 @@ function QuestionDockForm({
 			    Capped by the measured column (--dock-max-h; the old fixed 55dvh cut
 			    long questions short — owner round, 2026-10-05). */}
 			<div data-dock-scroll-area="" data-session-find-root="" className="max-h-[var(--dock-max-h,55dvh)] overflow-y-auto px-4 pt-3">
-				<div className="mb-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+				<div className="mb-1 text-xs font-medium uppercase tracking-wide text-font-color-muted-foreground">
 					{toolName === "probe"
 						? "Probe"
 						: toolName === "recall"
@@ -583,7 +583,7 @@ function QuestionDockForm({
 					<ToolContentResponse>{qd.question}</ToolContentResponse>
 				</div>
 				{qd.context && (
-					<div className="mb-3 text-sm text-muted-foreground">
+					<div className="mb-3 text-sm text-font-color-muted-foreground">
 						<ToolContentResponse>{qd.context}</ToolContentResponse>
 					</div>
 				)}
@@ -610,7 +610,7 @@ function QuestionDockForm({
 										className={cn(
 											"mt-0.5 flex size-4 shrink-0 items-center justify-center border",
 											qd.mode === "multi-select" ? "rounded-sm" : "rounded-full",
-											isSel ? "border-primary bg-primary text-primary-foreground" : "border-muted-foreground/40",
+											isSel ? "border-primary bg-primary text-font-color-primary-foreground" : "border-muted-foreground/40",
 										)}
 									>
 										{isSel && (
@@ -629,7 +629,7 @@ function QuestionDockForm({
 											// records must not leak either. Same MessageResponse path as the
 											// label (owner, 2026-10-12): descriptions are full markdown —
 											// LaTeX included — not plain text.
-											<ToolContentResponse className="lh-prose block text-xs text-muted-foreground">
+											<ToolContentResponse className="lh-prose block text-xs text-font-color-muted-foreground">
 												{opt.description}
 											</ToolContentResponse>
 										)}
@@ -650,7 +650,7 @@ function QuestionDockForm({
 									// Option-row layout + radio circle (owner); the dashed
 									// outline stays — this is the deliberate non-answer.
 									"flex items-start gap-3 rounded-lg border border-dashed px-3 py-2 text-left text-sm outline-none transition-colors",
-									sel.dontKnow ? "border-primary text-foreground" : "text-muted-foreground",
+									sel.dontKnow ? "border-primary text-font-color-foreground" : "text-font-color-muted-foreground",
 									kbdIdx === optionCount && !sel.dontKnow && "ring-1 ring-border bg-accent/40",
 								)}
 							>
@@ -658,7 +658,7 @@ function QuestionDockForm({
 									className={cn(
 										"mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-full border",
 										sel.dontKnow
-											? "border-primary bg-primary text-primary-foreground"
+											? "border-primary bg-primary text-font-color-primary-foreground"
 											: "border-muted-foreground/40",
 									)}
 								>
@@ -686,7 +686,7 @@ function QuestionDockForm({
 										"mt-0.5 flex size-4 shrink-0 items-center justify-center border",
 										qd.mode === "multi-select" ? "rounded-sm" : "rounded-full",
 										sel.otherSelected
-											? "border-primary bg-primary text-primary-foreground"
+											? "border-primary bg-primary text-font-color-primary-foreground"
 											: "border-muted-foreground/40",
 									)}
 								>
@@ -731,7 +731,7 @@ function QuestionDockForm({
 											}
 									}}
 									placeholder="Type your own answer…"
-									className="lh-input w-full min-w-0 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
+									className="lh-input w-full min-w-0 flex-1 bg-transparent outline-none placeholder:text-font-color-muted-foreground"
 									onClick={(e) => e.stopPropagation()}
 								/>
 							</div>
@@ -759,7 +759,7 @@ function QuestionDockForm({
 						<span
 							className={cn(
 								"shrink-0 text-xs font-medium uppercase tracking-wide",
-								sel.dontKnow ? "text-muted-foreground/50" : "text-muted-foreground",
+								sel.dontKnow ? "text-font-color-muted-foreground/50" : "text-font-color-muted-foreground",
 							)}
 						>
 							Confidence
@@ -822,7 +822,7 @@ function QuestionDockForm({
 							data-testid="confidence-value"
 							className={cn(
 								"w-9 shrink-0 text-right font-mono text-sm tabular-nums",
-								sel.dontKnow && "text-muted-foreground/50",
+								sel.dontKnow && "text-font-color-muted-foreground/50",
 							)}
 						>
 							{sel.dontKnow ? "—" : `${CONFIDENCE_STOPS[confIdx]}%`}
@@ -847,7 +847,7 @@ function QuestionDockForm({
 					data-testid={qd.mode === "text" ? "answer-field" : "thinking-field"}
 					className="rounded-[10px] border border-border/70 bg-background/60 transition-colors focus-within:border-primary/50"
 				>
-					<div className="px-2.5 pt-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+					<div className="px-2.5 pt-2 text-xs font-medium uppercase tracking-wide text-font-color-muted-foreground">
 						{qd.mode === "text" ? "Your answer" : "YOUR THINKING"}
 					</div>
 					{qd.mode === "text" ? (
@@ -876,7 +876,7 @@ function QuestionDockForm({
 							}}
 							placeholder="Type your answer…"
 							rows={1}
-							className="field-sizing-content lh-input max-h-48 min-h-10 w-full resize-none bg-transparent px-2.5 py-2 outline-none placeholder:text-muted-foreground"
+							className="field-sizing-content lh-input max-h-48 min-h-10 w-full resize-none bg-transparent px-2.5 py-2 outline-none placeholder:text-font-color-muted-foreground"
 						/>
 					) : (
 						<textarea
@@ -907,7 +907,7 @@ function QuestionDockForm({
 							placeholder="Why this answer? Whatever comes to mind."
 							rows={1}
 							className={cn(
-								"field-sizing-content lh-input max-h-48 w-full resize-none bg-transparent px-2.5 py-2 outline-none placeholder:text-muted-foreground/70",
+								"field-sizing-content lh-input max-h-48 w-full resize-none bg-transparent px-2.5 py-2 outline-none placeholder:text-font-color-muted-foreground/70",
 								// Phase-scaled prominence: teaching invites depth,
 								// probing stays quick.
 								phase === "teach" ? "min-h-[4.5rem]" : "min-h-10",
@@ -915,7 +915,7 @@ function QuestionDockForm({
 						/>
 					)}
 					<div className="flex items-center justify-between gap-2 p-1">
-						<span aria-hidden className="pl-1.5 text-xs text-muted-foreground">
+						<span aria-hidden className="pl-1.5 text-xs text-font-color-muted-foreground">
 								{compactionRunning ? "compacting session…" : "↵ submits · ⇧↵ newline"}
 						</span>
 						<Button

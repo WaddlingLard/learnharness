@@ -283,7 +283,7 @@ export function SettingsDialogBody({
 					type="button"
 					aria-label="Close settings"
 					data-testid="settings-close"
-					className="ml-auto size-7 rounded-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+					className="ml-auto size-7 rounded-sm text-font-color-muted-foreground transition-colors hover:bg-accent hover:text-font-color-foreground"
 					onClick={onClose}
 				>
 					<svg
@@ -315,8 +315,8 @@ export function SettingsDialogBody({
 							aria-current={active === s.id}
 							className={`rounded-sm px-3 py-1.5 text-left font-ui text-sm transition-colors ${
 								active === s.id
-									? "bg-accent text-foreground"
-									: "text-muted-foreground hover:bg-accent hover:text-foreground"
+									? "bg-accent text-font-color-foreground"
+									: "text-font-color-muted-foreground hover:bg-accent hover:text-font-color-foreground"
 							}`}
 							onClick={() => setActive(s.id)}
 						>
@@ -346,11 +346,11 @@ export function SettingsDialogBody({
 						</p>
 					)}
 					{record === undefined ? (
-						<p className="px-6 py-5 text-xs text-muted-foreground/70">
+						<p className="px-6 py-5 text-xs text-font-color-muted-foreground/70">
 							Loading settings…
 						</p>
 					) : record === null ? (
-						<p className="px-6 py-5 text-xs text-muted-foreground/70">
+						<p className="px-6 py-5 text-xs text-font-color-muted-foreground/70">
 							Settings could not be loaded — refresh to retry.
 						</p>
 					) : (

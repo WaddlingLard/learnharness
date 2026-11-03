@@ -23,11 +23,12 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { FACTORY_SETTINGS, type AppearanceSettings } from "@/src/core";
 
 /** The resolved, fully-concrete appearance view (delta + factory merged). */
-export function resolveAppearance(delta: AppearanceSettings | undefined) {
+export function resolveAppearance(delta: AppearanceSettings | undefined): Required<AppearanceSettings> {
 	const f = FACTORY_SETTINGS.appearance;
 	return {
 		mode: delta?.mode ?? f.mode,
 		background: delta?.background ?? f.background,
+		fontColor: delta?.fontColor ?? f.fontColor,
 		fontFamily: delta?.fontFamily ?? f.fontFamily,
 		proseFontSize: delta?.proseFontSize ?? f.proseFontSize,
 		sessionNameSerif: delta?.sessionNameSerif ?? f.sessionNameSerif,
@@ -54,21 +55,45 @@ function raise(hex: string, add: number): string {
  *  itself, the raised surfaces (card/popover/secondary/muted, +8), the
  *  accent (+22), the edges (border/input, +47), and primary-foreground
  *  (the inverted text on primary = the background's own color, as today). */
-export function derivedPalette(background: string): Record<string, string> {
+export function derivedPalette(background: string, type: string): Record<string, string> {
+	
 	const card = raise(background, 8);
 	const accent = raise(background, 22);
 	const border = raise(background, 47);
-	return {
-		"--background": background,
-		"--card": card,
-		"--popover": card,
-		"--secondary": card,
-		"--muted": card,
-		"--accent": accent,
-		"--border": border,
-		"--input": border,
-		"--primary-foreground": background,
+	const prefix = type === "background" ? "" : `${type}-`;
+	const fontColor = background;
+
+	
+	const toUpdate: Record<string, string[]> = {
+		'background': ['background', 'card', 'popover', 'secondary', 'muted', 'accent', 'border', 'input'],
+		'font-color': ['foreground', 'muted-foreground', 'card-foreground', 'primary', 'primary-foreground', 'accent-foreground']
 	};
+
+	const findPaletteForAttribute = (attribute: string) => {
+		for (const key in paletteAffectsAttribute) {
+			if (paletteAffectsAttribute[key]?.includes(attribute)) return key;
+		}
+		// Default is background
+		return background;
+	}
+
+	const paletteAffectsAttribute: Record<string, string[]> = {
+		[background]: ['background', 'primary-foreground'],
+		[card]: ['card', 'popover', 'secondary', 'muted', 'muted-foreground'],
+		[accent]: ['accent'],
+		[border]: ['border', 'input'],
+		[fontColor]: ['foreground', 'card-foreground', 'primary', 'primary-foreground', 'accent-foreground']	
+	};
+
+	const attributeList = toUpdate[type]?.map(
+		(attribute) => [[`--${prefix}${attribute}`], findPaletteForAttribute(attribute)
+	]) ?? [];
+
+	const newAttributes = Object.fromEntries(attributeList);
+
+	console.log('returning attributes', newAttributes);
+	return newAttributes;
+
 }
 
 /** THE mapping: resolved appearance → the CSS variables to set on <html>.
@@ -76,9 +101,12 @@ export function derivedPalette(background: string): Record<string, string> {
  *  exported for tests. */
 export function appearanceVars(a: ReturnType<typeof resolveAppearance>): Record<string, string> {
 	const vars: Record<string, string> = {};
-	if (a.background !== null) Object.assign(vars, derivedPalette(a.background));
+	if (a.background !== null) Object.assign(vars, derivedPalette(a.background, "background"));
 	if (a.fontFamily !== null) {
 		vars["--font-prose"] = `"${a.fontFamily}", var(--font-sans3), ui-sans-serif, system-ui, sans-serif`;
+	}
+	if (a.fontColor !== null) {
+		Object.assign(vars, derivedPalette(a.fontColor, "font-color"));
 	}
 	// The ONE documented reading-size variable (typography round 4): prose,
 	// inputs, and session titles all read it, so one setProperty moves them.

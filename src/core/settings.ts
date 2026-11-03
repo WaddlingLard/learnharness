@@ -288,6 +288,7 @@ export interface AppearanceSettings {
 	/** The one user-chosen color; everything else derives per-mode in code.
 	 *  null = the mode's default background. */
 	background?: string | null;
+	fontColor?: string | null;
 	/** The main reading font (everything that is Source Sans 3 today), by
 	 *  name — user-chosen from installed fonts. null = Source Sans 3. */
 	fontFamily?: string | null;
@@ -389,6 +390,7 @@ export interface FactorySettings {
 	appearance: {
 		mode: "dark" | "light";
 		background: string | null;
+		fontColor: string | null;
 		fontFamily: string | null;
 		proseFontSize: number;
 		sessionNameSerif: boolean;
@@ -409,6 +411,7 @@ export const FACTORY_SETTINGS: FactorySettings = {
 	appearance: {
 		mode: "dark",
 		background: null, // the dark default (#141414) lives in the mode's derivation curve
+		fontColor: null, // the dark default (#FFFFFF) will also be in the mode's derivation curve
 		fontFamily: null, // Source Sans 3
 		proseFontSize: 16,
 		sessionNameSerif: true,
@@ -552,19 +555,21 @@ function sanitizeMdRendering(raw: unknown): MdRenderingSettings {
 	return out;
 }
 
-function sanitizeAppearance(raw: Record<string, unknown>): AppearanceSettings {
+function sanitizeAppearance(raw: Record<keyof AppearanceSettings, unknown>): AppearanceSettings {
 	const out: AppearanceSettings = {};
 	if (raw.mode === "dark" || raw.mode === "light") out.mode = raw.mode;
 	if (raw.background !== undefined) out.background = sanitizeHexOrNull(raw.background);
 	if (raw.fontFamily !== undefined) {
 		out.fontFamily = typeof raw.fontFamily === "string" && raw.fontFamily.trim() ? raw.fontFamily : null;
 	}
+	if (raw.fontColor !== undefined) out.fontColor = sanitizeHexOrNull(raw.fontColor);
 	if (typeof raw.proseFontSize === "number" && Number.isFinite(raw.proseFontSize)) {
 		out.proseFontSize = clamp(Math.round(raw.proseFontSize), PROSE_FONT_MIN, PROSE_FONT_MAX);
 	}
 	const sessionNameSerif = boolOrDrop(raw.sessionNameSerif);
 	if (sessionNameSerif !== undefined) out.sessionNameSerif = sessionNameSerif;
 	if (raw.mdRendering !== undefined) out.mdRendering = sanitizeMdRendering(raw.mdRendering);
+		
 	return out;
 }
 

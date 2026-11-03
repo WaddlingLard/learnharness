@@ -86,7 +86,7 @@ function DictationLanguagePicker({ preference, disabled }: {
 					event.stopPropagation();
 				}
 			}}>
-				{error && <div role="alert" className="mb-1.5 text-destructive">{error}</div>}
+				{error && <div role="alert" className="mb-1.5 text-font-color-destructive">{error}</div>}
 				<SearchMenuList
 					items={DICTATION_LANGUAGES}
 					itemKey={(item) => item.code}
@@ -100,7 +100,7 @@ function DictationLanguagePicker({ preference, disabled }: {
 					ariaLabel="Search dictation languages"
 					placeholder="Search languages…"
 					empty="No languages match."
-					renderItem={(item) => <span className="text-card-foreground">{item.label}</span>}
+					renderItem={(item) => <span className="text-font-color-card-foreground">{item.label}</span>}
 				/>
 			</div>
 		</MenuShell>}

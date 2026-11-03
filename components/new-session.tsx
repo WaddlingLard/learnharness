@@ -188,7 +188,7 @@ export function DraftShell({
 									)}
 									setup={setupCta}
 								/>
-								{startError && <p role="alert" className="pointer-events-auto mb-2 text-sm text-destructive">{OPENING_PROMPT_FAILURE}</p>}
+								{startError && <p role="alert" className="pointer-events-auto mb-2 text-sm text-font-color-destructive">{OPENING_PROMPT_FAILURE}</p>}
 								<div className="pointer-events-auto overflow-hidden rounded-2xl border bg-card shadow-lg">
 									<Composer
 										busy={busy}
@@ -364,7 +364,7 @@ export function NewSession({ initialConfigured, mode = "teach" }: { initialConfi
 								type="button"
 								data-testid="setup-cta"
 								onClick={() => setSetupOpen(true)}
-								className="rounded-sm border border-border bg-card px-3 py-1.5 font-ui text-xs text-foreground transition-colors hover:border-muted-foreground/50 hover:bg-accent cursor-pointer"
+								className="rounded-sm border border-border bg-card px-3 py-1.5 font-ui text-xs text-font-color-foreground transition-colors hover:border-muted-foreground/50 hover:bg-accent cursor-pointer"
 							>
 								Set up your models
 							</button>

@@ -34,11 +34,11 @@ export function NodePickerControl({ count, onOpen, onClear }: {
 				className={
 					"flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 font-ui text-xs transition-colors " +
 					(count > 0
-						? "border-border bg-card text-foreground hover:bg-accent"
-						: "border-dashed border-border/80 bg-transparent text-muted-foreground hover:bg-accent hover:text-foreground")
+						? "border-border bg-card text-font-color-foreground hover:bg-accent"
+						: "border-dashed border-border/80 bg-transparent text-font-color-muted-foreground hover:bg-accent hover:text-font-color-foreground")
 				}
 			>
-				<DumbbellIcon aria-hidden="true" className="size-3.5 text-muted-foreground" />
+				<DumbbellIcon aria-hidden="true" className="size-3.5 text-font-color-muted-foreground" />
 				{count > 0 ? `${count} ${count === 1 ? "node" : "nodes"} selected` : "Pick nodes"}
 			</button>
 			{count > 0 && (
@@ -46,7 +46,7 @@ export function NodePickerControl({ count, onOpen, onClear }: {
 					type="button"
 					data-testid="practice-props-clear"
 					onClick={onClear}
-					className="cursor-pointer rounded-full px-2 py-1 font-ui text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+					className="cursor-pointer rounded-full px-2 py-1 font-ui text-xs text-font-color-muted-foreground transition-colors hover:bg-accent hover:text-font-color-foreground"
 				>
 					Clear
 				</button>

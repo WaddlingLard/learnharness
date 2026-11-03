@@ -188,18 +188,18 @@ export function CoverageMenuBody({
 	return (
 		<div data-testid="ctx-coverage" className="flex flex-col gap-1 px-2.5 pt-1 pb-2">
 			{busy ? (
-				<span className="flex items-center gap-1.5 text-muted-foreground" data-testid="ctx-coverage-running">
+				<span className="flex items-center gap-1.5 text-font-color-muted-foreground" data-testid="ctx-coverage-running">
 					<span className="size-1.5 animate-pulse rounded-full bg-foreground/70" aria-hidden />
 					extracting…
 				</span>
 			) : complete ? (
-				<span className="text-muted-foreground">fully extracted</span>
+				<span className="text-font-color-muted-foreground">fully extracted</span>
 			) : (
 				<span className="flex flex-col">
-					<span className="tabular-nums text-foreground">
+					<span className="tabular-nums text-font-color-foreground">
 						{formatTokens(coverage.uncoveredTokens)} tok uncovered
 					</span>
-					<span className="tabular-nums text-muted-foreground">
+					<span className="tabular-nums text-font-color-muted-foreground">
 						{coverage.uncoveredCount} message{coverage.uncoveredCount === 1 ? "" : "s"} unextracted
 					</span>
 				</span>
@@ -209,7 +209,7 @@ export function CoverageMenuBody({
 				data-testid="ctx-extract"
 				onClick={onExtract}
 				disabled={busy || complete}
-				className="flex items-center justify-center rounded-lg border px-2 py-1 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground disabled:opacity-40 disabled:hover:bg-transparent"
+				className="flex items-center justify-center rounded-lg border px-2 py-1 text-font-color-muted-foreground transition-colors hover:bg-accent hover:text-font-color-foreground disabled:opacity-40 disabled:hover:bg-transparent"
 			>
 				{busy ? "Running" : "Extract"}
 			</button>
@@ -361,44 +361,44 @@ export function CoverageRingGlyph({ fill, running }: { fill: number; running: bo
 export function CoverageRingDetail({ coverage, chunkTokens }: { coverage: SessionCoverage; chunkTokens: number }) {
 	return (
 		<>
-			<div className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+			<div className="mb-2 text-xs font-medium uppercase tracking-wide text-font-color-muted-foreground">
 				Extraction coverage
 			</div>
-			<div className="flex flex-col gap-1 text-muted-foreground">
+			<div className="flex flex-col gap-1 text-font-color-muted-foreground">
 				<div className="flex justify-between gap-2">
 					<span>Uncovered</span>
-					<span className="tabular-nums text-card-foreground">
+					<span className="tabular-nums text-font-color-card-foreground">
 						{formatTokens(coverage.uncoveredTokens)} tokens
 					</span>
 				</div>
 				<div className="flex justify-between gap-2">
 					<span>Covered</span>
-					<span className="tabular-nums text-card-foreground">
+					<span className="tabular-nums text-font-color-card-foreground">
 						{formatTokens(coverage.coveredTokens)} tokens
 					</span>
 				</div>
 				<div className="flex justify-between gap-2">
 					<span>Messages</span>
-					<span className="tabular-nums text-card-foreground">
+					<span className="tabular-nums text-font-color-card-foreground">
 						{coverage.coveredCount} / {coverage.totalMessages}
 					</span>
 				</div>
 				<div className="flex justify-between gap-2">
 					<span>Chunk threshold</span>
-					<span className="tabular-nums text-card-foreground">
+					<span className="tabular-nums text-font-color-card-foreground">
 						{formatTokens(chunkTokens)} tokens
 					</span>
 				</div>
 				<div className="flex justify-between gap-2">
 					<span>Last extraction</span>
-					<span className="tabular-nums text-card-foreground">
+					<span className="tabular-nums text-font-color-card-foreground">
 						{coverage.lastFoldedAt ? timeAgo(coverage.lastFoldedAt) : "—"}
 					</span>
 				</div>
 				{coverage.running && (
 					<div className="flex justify-between gap-2" data-testid="coverage-ring-running">
 						<span>Status</span>
-						<span className="text-card-foreground">extracting…</span>
+						<span className="text-font-color-card-foreground">extracting…</span>
 					</div>
 				)}
 			</div>

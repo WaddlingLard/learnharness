@@ -209,7 +209,7 @@ function parseHexOrNull(value: unknown, field: string): { color?: string | null;
 	return { color: value };
 }
 
-/** appearance: { mode?, background?, fontFamily?, proseFontSize?,
+/** appearance: { mode?, background?, fontColor?, fontFamily?, proseFontSize?,
  *  sessionNameSerif?, mdRendering? } */
 export function parseAppearanceSettingsBody(body: unknown): SettingsBodyResult<AppearanceSettings> {
 	const raw = asRecord(body);
@@ -225,6 +225,11 @@ export function parseAppearanceSettingsBody(body: unknown): SettingsBodyResult<A
 		const parsed = parseHexOrNull(raw.background, "background");
 		if (parsed.error) return { ok: false, error: parsed.error };
 		settings.background = parsed.color ?? null;
+	}
+	if (raw.fontColor !== undefined) {
+		const parsed = parseHexOrNull(raw.fontColor, "font color");
+		if (parsed.error) return { ok: false, error: parsed.error };
+		settings.fontColor = parsed.color ?? null;
 	}
 	if (raw.fontFamily !== undefined) {
 		if (raw.fontFamily !== null && (typeof raw.fontFamily !== "string" || !raw.fontFamily.trim())) {

@@ -106,7 +106,7 @@ export function StatsBar({
 			// (so its transparent gradient area never blocks scrolling) — this row
 			// must re-enable events or every control on it is dead (the model-
 			// control wave caught this live: buttons rendered, clicks never landed).
-			className="pointer-events-auto relative flex items-center justify-between gap-3 px-3 pt-2 text-xs text-muted-foreground"
+			className="pointer-events-auto relative flex items-center justify-between gap-3 px-3 pt-2 text-xs text-font-color-muted-foreground"
 		>
 			{/* The summary button + its popover: the popover anchors to this
 			    wrapper, CENTERED over the button itself (owner, stats round 2)
@@ -128,7 +128,7 @@ export function StatsBar({
 				onClick={() => setOpen((o) => !o)}
 				aria-expanded={open}
 				data-testid="stats-summary"
-				className="flex items-center gap-1.5 tabular-nums transition-colors hover:text-foreground"
+				className="flex items-center gap-1.5 tabular-nums transition-colors hover:text-font-color-foreground"
 			>
 				<span data-testid="stats-context">
 					{contextLabel}
@@ -141,31 +141,31 @@ export function StatsBar({
 						data-testid="stats-detail"
 						className="absolute bottom-full left-1/2 z-40 mb-1.5 w-72 -translate-x-1/2 rounded-xl border bg-card p-3 text-xs shadow-xl"
 					>
-						<div className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+						<div className="mb-2 text-xs font-medium uppercase tracking-wide text-font-color-muted-foreground">
 							Session stats
 						</div>
-						<div className="flex flex-col gap-1 text-muted-foreground">
+						<div className="flex flex-col gap-1 text-font-color-muted-foreground">
 							<div className="flex justify-between gap-2">
 								<span>Context (last call)</span>
-								<span className="tabular-nums text-card-foreground">
+								<span className="tabular-nums text-font-color-card-foreground">
 									{contextLabel}
 								</span>
 							</div>
 							<div className="flex justify-between gap-2">
 								<span>{subscription ? "Usage" : "Total cost"}</span>
-								<span className="tabular-nums text-card-foreground">{costLabel}</span>
+								<span className="tabular-nums text-font-color-card-foreground">{costLabel}</span>
 							</div>
 							{providers.includes("ChatGPT") && <a href="https://chatgpt.com/settings/usage" target="_blank" rel="noreferrer" className="underline underline-offset-2">Manage ChatGPT usage</a>}
 							{unpriced > 0 && (
 								<div className="flex justify-between gap-2">
 									<span>Unpriced turns</span>
-									<span className="tabular-nums text-card-foreground">{unpriced}</span>
+									<span className="tabular-nums text-font-color-card-foreground">{unpriced}</span>
 								</div>
 							)}
 						</div>
 						{turns.length > 0 && (
 							<>
-								<div className="mb-1 mt-2.5 border-t pt-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+								<div className="mb-1 mt-2.5 border-t pt-2 text-xs font-medium uppercase tracking-wide text-font-color-muted-foreground">
 									Turns
 								</div>
 								<ul className="flex max-h-56 flex-col gap-1 overflow-y-auto">
@@ -173,11 +173,11 @@ export function StatsBar({
 										const c = pricing?.turnCosts[turn.id] ?? null;
 										return (
 											<li key={`${turn.messageId}-${i}`} className="flex items-center justify-between gap-2">
-												<span className="truncate text-muted-foreground">
+												<span className="truncate text-font-color-muted-foreground">
 													#{i + 1} · {prettyModel(turn.model, true)}
 												</span>
-												<span className="flex shrink-0 items-center gap-2 tabular-nums text-card-foreground">
-													<span className="text-muted-foreground">{turn.steps.length} steps</span>
+												<span className="flex shrink-0 items-center gap-2 tabular-nums text-font-color-card-foreground">
+													<span className="text-font-color-muted-foreground">{turn.steps.length} steps</span>
 													<span>{subscriptionLabel(turn.model) ?? (c === null ? "—" : formatUsd(c))}</span>
 												</span>
 											</li>

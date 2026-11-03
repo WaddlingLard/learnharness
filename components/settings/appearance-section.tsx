@@ -42,6 +42,7 @@ import { Hint } from "@/components/ui/hint";
 import { useAppearance } from "./appearance.tsx";
 import { FontMenuList } from "./model-menu";
 import { CommitInput, SettingsMenuTrigger, SettingsRow, ThinSelect, Toggle } from "./controls.tsx";
+import { Aperture } from "lucide-react";
 
 /** The factory reading family — the DEFAULT row's identity (unset =
  *  this). Exported for tests. */
@@ -99,6 +100,7 @@ export function AppearanceSection({
 }) {
 	const { appearance: resolved } = useAppearance();
 	const md = appearance?.mdRendering;
+	console.log(appearance);
 
 	// The font dropdown's open state + its enumeration cache. undefined =
 	// not enumerated yet (desktop: click-bound queryLocalFonts pending);
@@ -111,6 +113,7 @@ export function AppearanceSection({
 	const [localFonts, setLocalFonts] = useState<string[] | null | undefined>(undefined);
 	const [enumEmpty, setEnumEmpty] = useState(false);
 	const menuAnchorRef = useRef<HTMLSpanElement>(null);
+	const rootStyle = window.getComputedStyle(document.documentElement);
 
 	// The enumeration runs INSIDE the trigger click — queryLocalFonts
 	// requires user activation, so it cannot be a mount effect. First
@@ -202,6 +205,19 @@ export function AppearanceSection({
 					ariaLabel="background hex"
 					testid="input-background"
 					onCommit={(v) => onSectionChange({ ...appearance, background: v === "" ? null : v })}
+				/>
+			</SettingsRow>
+			<SettingsRow
+				label="Font Color"
+				hint={`Empty = ${resolved.fontColor ?? rootStyle.getPropertyValue('--text-foreground')}`}
+				// Maybe add test-id here
+			>
+				<CommitInput
+					value={resolved.fontColor ?? ""}
+					placeholder="#FFFFFF"
+					ariaLabel="background hex"
+					// Maybe add test-id here
+					onCommit={(hexVal) => onSectionChange({ ...appearance, fontColor: hexVal === "" ? null : hexVal })}
 				/>
 			</SettingsRow>
 			<SettingsRow
@@ -314,7 +330,7 @@ export function AppearanceSection({
 			{/* The emphasis inks default to the REGULAR TEXT COLOR now
 			    (appearance wave, 2026-09-26) — the empty-state labels say
 			    so; explicit hex overrides ride unchanged. */}
-			<SettingsRow label="Bold color" hint="Empty = same as text" testid="row-bold-color">
+			<SettingsRow label="Bold color" hint={`Empty = same as ${appearance?.fontColor ?? md?.boldColor ?? rootStyle.getPropertyValue('--text-foreground') }`} testid="row-bold-color">
 				<CommitInput
 					value={md?.boldColor ?? ""}
 					placeholder="same as text"
@@ -323,7 +339,7 @@ export function AppearanceSection({
 					onCommit={(v) => onSectionChange({ ...appearance, mdRendering: { ...md, boldColor: v === "" ? null : v } })}
 				/>
 			</SettingsRow>
-			<SettingsRow label="Italic color" hint="Empty = same as text" testid="row-italic-color">
+			<SettingsRow label="Italic color" hint={`Empty = same as ${appearance?.fontColor ?? md?.italicColor ?? rootStyle.getPropertyValue('--text-foreground') }`} testid="row-italic-color">
 				<CommitInput
 					value={md?.italicColor ?? ""}
 					placeholder="same as text"

@@ -50,12 +50,22 @@
 	--border: #434343;
 	--input: #434343;
 	--ring: #8d8d8d;
+
+	/* Text values */
+	--text-foreground: var(--font-color-foreground, var(--foreground));
+	--text-muted-foreground: var(--font-color-muted-foreground, var(--muted-foreground));
+	--text-card-foreground: var(--font-color-card-foreground, var(--card-foreground));
+	--text-primary: var(--font-color-primary, var(--primary));
+	--text-primary-foreground: var(--font-color-primary-foreground, var(--primary-foreground));
+	--text-accent-foreground: var(--font-color-accent-foreground, var(--accent-foreground));
+	--text-destructive: var(--destructive);
+
 	/* Emphasis inks default to the REGULAR TEXT COLOR (owner ruling,
 	   appearance wave 2026-09-26 — the old #ee928c/#6fa9d6 factory
 	   emphasis colors are gone). Explicit overrides land via the
 	   appearance settings vars. */
-	--lh-ink-strong: var(--foreground);
-	--lh-ink-italic: var(--foreground);
+	--lh-ink-strong: var(--text-foreground);
+	--lh-ink-italic: var(--text-foreground);
 	/* THE READING SIZE = the ladder's 16px rung (--text-lg). Can't be
 	   var()-linked: @theme inline inlines literals into utilities without
 	   emitting runtime vars — so this is the one documented duplication:
@@ -88,9 +98,13 @@
 	--border: #434343;
 	--input: #434343;
 	--ring: #8d8d8d;
+
+	--text-foreground: var(--font-color-foreground, var(--foreground));
+
 	/* Same emphasis ruling as the block above: unset = text color. */
-	--lh-ink-strong: var(--foreground);
-	--lh-ink-italic: var(--foreground);
+	--lh-ink-strong: var(--text-foreground);
+	--lh-ink-italic: var(--text-foreground);
+
 	/* THE READING SIZE = the ladder's 16px rung (--text-lg). Can't be
 	   var()-linked: @theme inline inlines literals into utilities without
 	   emitting runtime vars — so this is the one documented duplication:
@@ -173,6 +187,14 @@
 	--color-border: var(--border);
 	--color-input: var(--input);
 	--color-ring: var(--ring);
+	
+	--color-font-color-foreground: var(--text-foreground);
+	--color-font-color-muted-foreground: var(--text-muted-foreground);
+	--color-font-color-card-foreground: var(--text-card-foreground);
+	--color-font-color-primary: var(--text-primary);
+	--color-font-color-primary-foreground: var(--text-primary-foreground);
+	--color-font-color-accent-foreground: var(--text-accent-foreground);
+	--color-font-color-destructive: var(--text-destructive);
 }
 
 * {

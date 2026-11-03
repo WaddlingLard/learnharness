@@ -894,14 +894,14 @@ export function PlanPopup({ messages, onClose }: { messages: readonly PopupMessa
 		>
 			<div className="mb-2 flex items-center gap-2">
 				<span className="text-sm font-medium">The plan</span>
-				<span className="text-xs text-muted-foreground">live — statuses derive from your check outcomes</span>
+				<span className="text-xs text-font-color-muted-foreground">live — statuses derive from your check outcomes</span>
 				<Hint label="Close" binding="escape" side="left">
 <button
 					type="button"
 					onClick={onClose}
 					aria-label="Close"
 					data-testid="plan-popup-close"
-					className="ml-auto rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+					className="ml-auto rounded-lg p-1.5 text-font-color-muted-foreground transition-colors hover:bg-accent hover:text-font-color-foreground"
 				>
 					<XIcon className="size-4" />
 				</button>
@@ -947,14 +947,14 @@ export function PlanPopup({ messages, onClose }: { messages: readonly PopupMessa
 							/>
 						</div>
 						<div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between p-2">
-							<span className="text-xs text-muted-foreground/60">Drag to pan · scroll to zoom</span>
+							<span className="text-xs text-font-color-muted-foreground/60">Drag to pan · scroll to zoom</span>
 							<div className="flex gap-1">
 								<Hint label="Zoom out" side="bottom">
 <button
 									type="button"
 									aria-label="Zoom out"
 									onClick={() => stepZoom(1 / 1.25)}
-									className="pointer-events-auto flex size-7 items-center justify-center rounded-md border border-border/70 bg-card/80 text-muted-foreground backdrop-blur transition-colors hover:bg-accent hover:text-foreground"
+									className="pointer-events-auto flex size-7 items-center justify-center rounded-md border border-border/70 bg-card/80 text-font-color-muted-foreground backdrop-blur transition-colors hover:bg-accent hover:text-font-color-foreground"
 								>
 									<MinusIcon className="size-3.5" />
 								</button>
@@ -965,7 +965,7 @@ export function PlanPopup({ messages, onClose }: { messages: readonly PopupMessa
 									aria-label="Fit plan to screen"
 									onClick={fitView}
 									data-testid="plan-popup-fit"
-									className="pointer-events-auto flex size-7 items-center justify-center rounded-md border border-border/70 bg-card/80 text-muted-foreground backdrop-blur transition-colors hover:bg-accent hover:text-foreground"
+									className="pointer-events-auto flex size-7 items-center justify-center rounded-md border border-border/70 bg-card/80 text-font-color-muted-foreground backdrop-blur transition-colors hover:bg-accent hover:text-font-color-foreground"
 								>
 									<MaximizeIcon className="size-3.5" />
 								</button>
@@ -975,7 +975,7 @@ export function PlanPopup({ messages, onClose }: { messages: readonly PopupMessa
 									type="button"
 									aria-label="Zoom in"
 									onClick={() => stepZoom(1.25)}
-									className="pointer-events-auto flex size-7 items-center justify-center rounded-md border border-border/70 bg-card/80 text-muted-foreground backdrop-blur transition-colors hover:bg-accent hover:text-foreground"
+									className="pointer-events-auto flex size-7 items-center justify-center rounded-md border border-border/70 bg-card/80 text-font-color-muted-foreground backdrop-blur transition-colors hover:bg-accent hover:text-font-color-foreground"
 								>
 									<PlusIcon className="size-3.5" />
 								</button>
@@ -984,7 +984,7 @@ export function PlanPopup({ messages, onClose }: { messages: readonly PopupMessa
 						</div>
 					</>
 				) : (
-					<div className="flex h-full items-center justify-center text-sm text-muted-foreground">
+					<div className="flex h-full items-center justify-center text-sm text-font-color-muted-foreground">
 						No plan in this session yet.
 					</div>
 				)}

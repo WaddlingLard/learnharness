@@ -293,8 +293,8 @@ export function ModelControl({ chatId, onModelChange }: { chatId?: string; onMod
 				// graph no longer bleeds through these pills.
 				className="flex items-center gap-1.5 rounded-full border bg-card/85 px-2.5 py-1 shadow-lg backdrop-blur transition-colors hover:border-border hover:bg-muted"
 			>
-				<span className="text-card-foreground">{effectiveId ? prettyModel(effectiveId) : "—"}</span>
-				<span aria-hidden className="text-xs text-muted-foreground">▾</span>
+				<span className="text-font-color-card-foreground">{effectiveId ? prettyModel(effectiveId) : "—"}</span>
+				<span aria-hidden className="text-xs text-font-color-muted-foreground">▾</span>
 			</button>
 			</Hint>
 			<Hint
@@ -323,10 +323,10 @@ export function ModelControl({ chatId, onModelChange }: { chatId?: string; onMod
 			>
 				{/* Just the level — the button reads like the model button reads
 				   the model name (owner, stats-control round 1). */}
-				<span className="text-card-foreground">
+				<span className="text-font-color-card-foreground">
 					{effectiveLevel === undefined ? "—" : (THINKING_LABEL[effectiveLevel] ?? effectiveLevel)}
 				</span>
-				<span aria-hidden className="text-xs text-muted-foreground">▾</span>
+				<span aria-hidden className="text-xs text-font-color-muted-foreground">▾</span>
 			</button>
 			</Hint>
 
@@ -340,7 +340,7 @@ export function ModelControl({ chatId, onModelChange }: { chatId?: string; onMod
 					preferredSide="up"
 					menuClass="flex w-[22rem] flex-col rounded-xl border bg-card p-2 text-xs shadow-xl"
 				>
-					{error && <div className="mb-1.5 text-destructive">{error}</div>}
+					{error && <div className="mb-1.5 text-font-color-destructive">{error}</div>}
 					<ModelMenuList
 						models={catalog?.models}
 						effectiveId={effectiveId}
@@ -371,7 +371,7 @@ export function ModelControl({ chatId, onModelChange }: { chatId?: string; onMod
 						empty={catalog ? (effectiveId ? `${prettyModel(effectiveId)} has no thinking levels.` : "Pick a model first.") : "Loading…"}
 						footer="Levels this model actually supports"
 					/>
-					{error && <div className="mt-1 text-destructive">{error}</div>}
+					{error && <div className="mt-1 text-font-color-destructive">{error}</div>}
 				</MenuShell>
 			)}
 		</div>

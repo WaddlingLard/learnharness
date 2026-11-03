@@ -156,7 +156,7 @@ export const ReasoningTrigger = memo(
           /* The heading register (owner round 4, 2026-10-05): the small
              mono caps of the card eyebrows — matching YOUR THINKING, whose
              rail offsets it by exactly the one-character difference. */
-          "flex w-full items-center gap-2 text-muted-foreground text-xs font-medium uppercase tracking-wide transition-colors hover:text-foreground",
+          "flex w-full items-center gap-2 text-font-color-muted-foreground text-xs font-medium uppercase tracking-wide transition-colors hover:text-font-color-foreground",
           className
         )}
         {...props}
@@ -204,7 +204,7 @@ export const ReasoningContent = memo(
     <CollapsibleContent
       className={cn(
         "mt-4 text-sm",
-        "data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2 data-[state=open]:slide-in-from-top-2 text-muted-foreground outline-none data-[state=closed]:animate-out data-[state=open]:animate-in",
+        "data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2 data-[state=open]:slide-in-from-top-2 text-font-color-muted-foreground outline-none data-[state=closed]:animate-out data-[state=open]:animate-in",
         className
       )}
       {...props}

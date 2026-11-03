@@ -159,7 +159,7 @@ export function SessionFind({ scopeRef, scrollContextRef }: {
 	};
 
 	if (!open) return null;
-	const buttonClass = "flex size-7 shrink-0 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground disabled:opacity-40";
+	const buttonClass = "flex size-7 shrink-0 items-center justify-center rounded-md text-font-color-muted-foreground hover:bg-accent hover:text-font-color-foreground disabled:opacity-40";
 	return (
 		<div
 			role="search"
@@ -179,7 +179,7 @@ export function SessionFind({ scopeRef, scrollContextRef }: {
 				}
 			}}
 		>
-			<SearchIcon className="size-4 shrink-0 text-muted-foreground" aria-hidden />
+			<SearchIcon className="size-4 shrink-0 text-font-color-muted-foreground" aria-hidden />
 			<input
 				ref={inputRef}
 				aria-label="Find in session"
@@ -187,9 +187,9 @@ export function SessionFind({ scopeRef, scrollContextRef }: {
 				value={query}
 				onChange={(event) => setQuery(event.target.value)}
 				spellCheck={false}
-				className="lh-input min-w-0 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
+				className="lh-input min-w-0 flex-1 bg-transparent outline-none placeholder:text-font-color-muted-foreground"
 			/>
-			<output aria-live="polite" data-testid="session-find-count" className="shrink-0 text-xs tabular-nums text-muted-foreground">
+			<output aria-live="polite" data-testid="session-find-count" className="shrink-0 text-xs tabular-nums text-font-color-muted-foreground">
 				{query ? `${result.index + 1}/${result.count}` : ""}
 			</output>
 			<button type="button" aria-label="Previous match" title="Previous match (Shift+Enter)" className={buttonClass}

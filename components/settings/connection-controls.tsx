@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 
 export function ConnectionRow({ label, action, disabled, onAction, children, testid, actionTestid, labelClassName }: { label: string; action: string; disabled: boolean; onAction: () => void; children?: React.ReactNode; testid?: string; actionTestid?: string; labelClassName?: string }) {
 	return <div className="flex flex-wrap items-center gap-3" data-testid={testid}>
-		<span className={labelClassName ?? "font-ui text-xs text-foreground"}>{label}</span>
+		<span className={labelClassName ?? "font-ui text-xs text-font-color-foreground"}>{label}</span>
 		{children}
-		<Button type="button" size="xs" variant={action === "Connect" ? "outline" : "ghost"} className={`cursor-pointer disabled:cursor-not-allowed ${action === "Connect" ? "" : "text-muted-foreground hover:text-foreground"}`} data-testid={actionTestid} disabled={disabled} onClick={onAction}>{action}</Button>
+		<Button type="button" size="xs" variant={action === "Connect" ? "outline" : "ghost"} className={`cursor-pointer disabled:cursor-not-allowed ${action === "Connect" ? "" : "text-font-color-muted-foreground hover:text-font-color-foreground"}`} data-testid={actionTestid} disabled={disabled} onClick={onAction}>{action}</Button>
 	</div>;
 }
 

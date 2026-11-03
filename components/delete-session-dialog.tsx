@@ -164,18 +164,18 @@ export function DeleteSessionBody({
 			onClick={(e) => e.stopPropagation()}
 			className="w-[32rem] max-w-[calc(100vw-2rem)] rounded-xl border bg-card p-5 shadow-xl"
 		>
-			<h2 className="text-sm font-semibold text-destructive">Delete session?</h2>
+			<h2 className="text-sm font-semibold text-font-color-destructive">Delete session?</h2>
 			{/* The session name below the title in JetBrains Mono (owner,
 			    2026-09-24): no code-block chrome — the font already says
 			    code. Owner, 2026-10-13 polish: normal text-sm size (was
 			    sized-up text-lg), still white. Same shape as the node
 			    dialog. */}
 			<div className="mt-1.5">
-				<code data-testid="session-name-code" className="font-mono text-sm text-foreground">
+				<code data-testid="session-name-code" className="font-mono text-sm text-font-color-foreground">
 					{chat.title}
 				</code>
 			</div>
-			<p className="mt-2 text-sm text-muted-foreground">
+			<p className="mt-2 text-sm text-font-color-muted-foreground">
 				This permanently removes the session — its messages, background jobs, and extraction records. Everything
 				it added to the graph stays unless you check below. This cannot be undone.
 			</p>
@@ -192,8 +192,8 @@ export function DeleteSessionBody({
 					className="mt-0.5 size-4 shrink-0 accent-primary"
 				/>
 				<span className="min-w-0">
-					<span className="block text-sm text-foreground">{TRACES_COPY.title}</span>
-					<span className="mt-1 block text-xs text-muted-foreground">{TRACES_COPY.body}</span>
+					<span className="block text-sm text-font-color-foreground">{TRACES_COPY.title}</span>
+					<span className="mt-1 block text-xs text-font-color-muted-foreground">{TRACES_COPY.body}</span>
 				</span>
 			</label>
 			{failure && (
@@ -202,13 +202,13 @@ export function DeleteSessionBody({
 					data-testid="delete-failure"
 					className="mt-3 rounded-sm border border-border/60 px-3 py-2 text-xs"
 				>
-					<span className="text-foreground">{failure.error}</span>
+					<span className="text-font-color-foreground">{failure.error}</span>
 					<button
 						type="button"
 						data-testid="delete-retry"
 						onClick={onRun}
 						disabled={busy}
-						className="ml-3 text-xs text-foreground underline-offset-2 hover:underline disabled:opacity-40"
+						className="ml-3 text-xs text-font-color-foreground underline-offset-2 hover:underline disabled:opacity-40"
 					>
 						Try again
 					</button>
@@ -223,7 +223,7 @@ export function DeleteSessionBody({
 					data-testid="delete-cancel"
 					onClick={onClose}
 					disabled={busy}
-					className="rounded-sm px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground disabled:opacity-40"
+					className="rounded-sm px-3 py-1.5 text-xs text-font-color-muted-foreground transition-colors hover:text-font-color-foreground disabled:opacity-40"
 				>
 					Cancel
 				</button>
@@ -232,7 +232,7 @@ export function DeleteSessionBody({
 					data-testid="delete-confirm"
 					onClick={onRun}
 					disabled={busy}
-					className="rounded-sm border border-destructive/50 bg-destructive/10 px-3 py-1.5 text-xs text-destructive transition-colors hover:bg-destructive/20 disabled:opacity-40"
+					className="rounded-sm border border-destructive/50 bg-destructive/10 px-3 py-1.5 text-xs text-font-color-destructive transition-colors hover:bg-destructive/20 disabled:opacity-40"
 				>
 					{busy ? "Deleting…" : "Delete"}
 				</button>

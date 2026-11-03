@@ -693,7 +693,7 @@ export function DictationBar({ dictation }: { dictation: Dictation }) {
 					}}
 					aria-label={error ? `Dictation failed: ${error}` : "Start dictation"}
 					data-testid="dictation-toggle"
-					className="flex h-7 w-full items-center justify-center gap-1.5 rounded-md border border-border/50 bg-card/50 text-xs text-muted-foreground/70 shadow-lg backdrop-blur transition-colors hover:border-border hover:text-muted-foreground"
+					className="flex h-7 w-full items-center justify-center gap-1.5 rounded-md border border-border/50 bg-card/50 text-xs text-font-color-muted-foreground/70 shadow-lg backdrop-blur transition-colors hover:border-border hover:text-font-color-muted-foreground"
 				>
 					<MicIcon className="size-3.5" />
 					<span className="max-w-full truncate">{error ?? "Dictate"}</span>
@@ -711,7 +711,7 @@ export function DictationBar({ dictation }: { dictation: Dictation }) {
 					disabled={phase === "stopping"}
 					aria-label="Stop dictation"
 					data-testid="dictation-toggle"
-					className="flex h-7 shrink-0 items-center gap-1.5 rounded-md bg-destructive/10 px-2 text-xs font-medium text-destructive transition-colors hover:bg-destructive/20"
+					className="flex h-7 shrink-0 items-center gap-1.5 rounded-md bg-destructive/10 px-2 text-xs font-medium text-font-color-destructive transition-colors hover:bg-destructive/20"
 				>
 					{phase === "stopping" ? <Loader2Icon className="size-3.5 animate-spin" /> : <MicIcon className="size-3.5" />}
 					Stop

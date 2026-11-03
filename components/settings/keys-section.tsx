@@ -164,7 +164,7 @@ function KeyTableRow({
 		return (
 			<div data-testid={testid}>
 				<div className="flex items-center gap-2 rounded-sm px-1 py-1.5" data-testid={`${testid}-editor`}>
-					<span className="shrink-0 font-ui text-xs text-foreground">{label}</span>
+					<span className="shrink-0 font-ui text-xs text-font-color-foreground">{label}</span>
 					<input
 						type="text"
 						value={value}
@@ -177,14 +177,14 @@ function KeyTableRow({
 						data-testid={`${testid}-input`}
 						disabled={busy}
 						autoFocus
-						className="h-7 min-w-0 flex-1 rounded-sm border border-border bg-background px-1.5 font-mono text-xs text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-muted-foreground/50"
+						className="h-7 min-w-0 flex-1 rounded-sm border border-border bg-background px-1.5 font-mono text-xs text-font-color-foreground outline-none placeholder:text-font-color-muted-foreground/60 focus:border-muted-foreground/50"
 					/>
 					<button
 						type="button"
 						onClick={() => void save()}
 						disabled={busy || !value.trim()}
 						data-testid={`${testid}-save`}
-						className="shrink-0 text-xs text-foreground underline-offset-2 hover:underline disabled:text-muted-foreground/40 disabled:no-underline"
+						className="shrink-0 text-xs text-font-color-foreground underline-offset-2 hover:underline disabled:text-font-color-muted-foreground/40 disabled:no-underline"
 					>
 						Save
 					</button>
@@ -193,7 +193,7 @@ function KeyTableRow({
 						onClick={onCancel}
 						disabled={busy}
 						data-testid={`${testid}-cancel`}
-						className="shrink-0 text-xs text-muted-foreground/70 underline-offset-2 hover:text-foreground hover:underline"
+						className="shrink-0 text-xs text-font-color-muted-foreground/70 underline-offset-2 hover:text-font-color-foreground hover:underline"
 					>
 						Cancel
 					</button>
@@ -203,7 +203,7 @@ function KeyTableRow({
 							onClick={() => void onDelete()}
 							disabled={busy}
 							data-testid={`${testid}-delete`}
-							className="shrink-0 text-xs text-muted-foreground/70 underline-offset-2 hover:text-red-500 hover:underline"
+							className="shrink-0 text-xs text-font-color-muted-foreground/70 underline-offset-2 hover:text-red-500 hover:underline"
 						>
 							Delete
 						</button>
@@ -229,7 +229,7 @@ function KeyTableRow({
 					envOwned ? "cursor-default" : "cursor-pointer transition-colors hover:bg-accent/50"
 				}`}
 			>
-				<span className="font-ui text-xs text-foreground">{label}</span>
+				<span className="font-ui text-xs text-font-color-foreground">{label}</span>
 				<span className="flex items-center gap-2">
 					{docsUrl && (
 						<a
@@ -237,12 +237,12 @@ function KeyTableRow({
 							target="_blank"
 							rel="noreferrer"
 							onClick={(e) => e.stopPropagation()}
-							className="text-[10px] text-muted-foreground/60 underline-offset-2 hover:text-foreground hover:underline"
+							className="text-[10px] text-font-color-muted-foreground/60 underline-offset-2 hover:text-font-color-foreground hover:underline"
 						>
 							key ↗
 						</a>
 					)}
-					<span data-testid={`${testid}-status`} className="font-mono text-[11px] text-muted-foreground">
+					<span data-testid={`${testid}-status`} className="font-mono text-[11px] text-font-color-muted-foreground">
 						{keyStatusLine(status)}
 					</span>
 				</span>
@@ -297,7 +297,7 @@ function AddProviderRow({
 				aria-expanded={open}
 				data-testid="add-provider"
 				onClick={() => setOpen((v) => !v)}
-				className="flex w-full items-center justify-between gap-3 rounded-sm px-1 py-1.5 text-left font-ui text-xs text-muted-foreground transition-colors hover:bg-accent/50 hover:text-foreground"
+				className="flex w-full items-center justify-between gap-3 rounded-sm px-1 py-1.5 text-left font-ui text-xs text-font-color-muted-foreground transition-colors hover:bg-accent/50 hover:text-font-color-foreground"
 			>
 				<span>+ Add provider key</span>
 				{addable.length > 0 && <span className="font-mono text-[11px]">{addable.length}</span>}
@@ -409,7 +409,7 @@ export function KeysSection({
 	}
 
 	if (loading || statuses === null) {
-		return <p className="px-6 py-5 text-xs text-muted-foreground/70">Loading keys…</p>;
+		return <p className="px-6 py-5 text-xs text-font-color-muted-foreground/70">Loading keys…</p>;
 	}
 
 	const { providerRows, toolRows, unknownRows, addable } = classifyKeys(statuses, providers);
@@ -455,14 +455,14 @@ export function KeysSection({
 				)}
 				{adding && (
 					<div className="flex items-center gap-2 rounded-sm px-1 py-1.5" data-testid={`key-${adding.id}-editor`}>
-						<span className="shrink-0 font-ui text-xs text-foreground">{adding.label}</span>
+						<span className="shrink-0 font-ui text-xs text-font-color-foreground">{adding.label}</span>
 						<AddProviderEditor provider={adding} onSave={(v) => void saveNewProvider(adding, v)} onCancel={() => setAdding(null)} error={addError} />
 					</div>
 				)}
 				{unknownRows.length > 0 && <div data-testid="group-unknown-keys">
 					{unknownRows.map((status) => <div key={status.id} data-testid={`unknown-${status.id}`} className="flex items-center justify-between gap-3 px-1 py-1.5 opacity-40">
-						<span className="font-mono text-xs text-foreground">{status.id}</span>
-						<span className="font-mono text-[11px] text-muted-foreground">{status.masked}</span>
+						<span className="font-mono text-xs text-font-color-foreground">{status.id}</span>
+						<span className="font-mono text-[11px] text-font-color-muted-foreground">{status.masked}</span>
 					</div>)}
 				</div>}
 			</SettingsGroup>
@@ -492,12 +492,12 @@ export function KeysSection({
 				))}
 				{label === "Dictation" && <>
 					<DictationLanguageSetting />
-					<p data-testid="dictation-setup-hint" className="px-1 text-[11px] leading-relaxed text-muted-foreground/70">
+					<p data-testid="dictation-setup-hint" className="px-1 text-[11px] leading-relaxed text-font-color-muted-foreground/70">
 						Create a <a
 							href="https://console.deepgram.com/"
 							target="_blank"
 							rel="noreferrer"
-							className="underline underline-offset-2 hover:text-foreground"
+							className="underline underline-offset-2 hover:text-font-color-foreground"
 						>Deepgram API key</a> with the Member role or higher, then add it above.
 					</p>
 				</>}
@@ -534,14 +534,14 @@ function AddProviderEditor({
 				aria-label={`${provider.label} key`}
 				data-testid={`key-${provider.id}-input`}
 				autoFocus
-				className="h-7 min-w-0 flex-1 rounded-sm border border-border bg-background px-1.5 font-mono text-xs text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-muted-foreground/50"
+				className="h-7 min-w-0 flex-1 rounded-sm border border-border bg-background px-1.5 font-mono text-xs text-font-color-foreground outline-none placeholder:text-font-color-muted-foreground/60 focus:border-muted-foreground/50"
 			/>
 			<button
 				type="button"
 				onClick={() => value.trim() && onSave(value)}
 				disabled={!value.trim()}
 				data-testid={`key-${provider.id}-save`}
-				className="shrink-0 text-xs text-foreground underline-offset-2 hover:underline disabled:text-muted-foreground/40 disabled:no-underline"
+				className="shrink-0 text-xs text-font-color-foreground underline-offset-2 hover:underline disabled:text-font-color-muted-foreground/40 disabled:no-underline"
 			>
 				Save
 			</button>
@@ -549,7 +549,7 @@ function AddProviderEditor({
 				type="button"
 				onClick={onCancel}
 				data-testid={`key-${provider.id}-cancel`}
-				className="shrink-0 text-xs text-muted-foreground/70 underline-offset-2 hover:text-foreground hover:underline"
+				className="shrink-0 text-xs text-font-color-muted-foreground/70 underline-offset-2 hover:text-font-color-foreground hover:underline"
 			>
 				Cancel
 			</button>

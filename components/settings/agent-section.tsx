@@ -453,11 +453,11 @@ export function AgentSection({
 			data-testid={`engine-option-${id}`}
 			onClick={onPick}
 			className={`flex w-full items-center justify-between rounded-lg px-2 py-1.5 text-left transition-colors hover:bg-muted ${
-				active ? "bg-muted/60 text-card-foreground" : "text-card-foreground"
+				active ? "bg-muted/60 text-font-color-card-foreground" : "text-font-color-card-foreground"
 			}`}
 		>
 			<span>{label}</span>
-			<span className="text-muted-foreground">
+			<span className="text-font-color-muted-foreground">
 				{live === null ? (active && <span aria-hidden>✓</span>) : live ? <span aria-hidden>✓ key</span> : <span aria-hidden>· no key</span>}
 			</span>
 		</button>
@@ -504,29 +504,29 @@ export function AgentSection({
 						setOpenSegment(open ? null : info.path);
 						setSegmentStatus(null);
 					}}
-					className="text-xs text-muted-foreground/70 underline-offset-2 hover:text-foreground hover:underline"
+					className="text-xs text-font-color-muted-foreground/70 underline-offset-2 hover:text-font-color-foreground hover:underline"
 				>
 					{open ? "Hide text" : "Show text"}
 				</button>
 				{open && (
 					<div className="mt-1 flex flex-col gap-2">
 						<div>
-							<p className="mb-1 text-xs uppercase tracking-widest text-muted-foreground/70">Source</p>
+							<p className="mb-1 text-xs uppercase tracking-widest text-font-color-muted-foreground/70">Source</p>
 							<textarea
 								readOnly
 								value={info.sourceText}
 								aria-label="The original instructions"
-								className="h-24 w-full resize-y rounded-sm border border-border bg-muted p-2 font-ui text-xs text-muted-foreground"
+								className="h-24 w-full resize-y rounded-sm border border-border bg-muted p-2 font-ui text-xs text-font-color-muted-foreground"
 							/>
 						</div>
 						<div>
-							<p className="mb-1 text-xs uppercase tracking-widest text-muted-foreground/70">Override</p>
+							<p className="mb-1 text-xs uppercase tracking-widest text-font-color-muted-foreground/70">Override</p>
 							<textarea
 								value={segmentDraft[info.path] ?? info.overrideText ?? ""}
 								onChange={(e) => setSegmentDraft({ ...segmentDraft, [info.path]: e.target.value })}
 								aria-label="Your version of the instructions"
 								placeholder="Add your own instructions…"
-								className="h-24 w-full resize-y rounded-sm border border-border bg-background p-2 font-ui text-xs text-foreground outline-none"
+								className="h-24 w-full resize-y rounded-sm border border-border bg-background p-2 font-ui text-xs text-font-color-foreground outline-none"
 							/>
 						</div>
 						<div className="flex items-center gap-3">
@@ -536,8 +536,8 @@ export function AgentSection({
 								onClick={() => void saveSegment(info.path, segmentDraft[info.path] ?? "")}
 								className={
 									dirty
-										? "text-xs text-foreground underline-offset-2 hover:underline"
-										: "cursor-not-allowed text-xs text-muted-foreground/40 underline-offset-2"
+										? "text-xs text-font-color-foreground underline-offset-2 hover:underline"
+										: "cursor-not-allowed text-xs text-font-color-muted-foreground/40 underline-offset-2"
 								}
 							>
 								Save
@@ -546,7 +546,7 @@ export function AgentSection({
 								<button
 									type="button"
 									onClick={() => void deleteSegment(info.path)}
-									className="text-xs text-muted-foreground/70 underline-offset-2 hover:text-red-500 hover:underline"
+									className="text-xs text-font-color-muted-foreground/70 underline-offset-2 hover:text-red-500 hover:underline"
 								>
 									Delete
 								</button>
@@ -558,7 +558,7 @@ export function AgentSection({
 							    open at a time (openSegment), so one shared
 							    status reads unambiguously. */}
 							{segmentStatus && (
-								<p className="text-xs text-muted-foreground/70" data-testid="segment-status">
+								<p className="text-xs text-font-color-muted-foreground/70" data-testid="segment-status">
 									{segmentStatus}
 								</p>
 							)}
@@ -746,7 +746,7 @@ export function AgentSection({
 											onClick={() => onSectionChange(composeQuizMechanics(agent, m))}
 											className={cn(
 												"h-8 rounded-md px-3 text-sm font-medium transition-colors",
-												active ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+												active ? "bg-background text-font-color-foreground shadow-sm" : "text-font-color-muted-foreground hover:text-font-color-foreground",
 											)}
 										>
 											{m === "choice" ? "Multiple choice" : "Free recall"}
@@ -852,7 +852,7 @@ export function AgentSection({
 
 			<SettingsGroup label="System prompts" testid="group-prompts">
 				{prompts === null ? (
-					<p className="text-xs text-muted-foreground/70">Loading prompt segments…</p>
+					<p className="text-xs text-font-color-muted-foreground/70">Loading prompt segments…</p>
 				) : (
 					<div className="flex flex-col gap-4">
 						{/* The owner's ruled order (2026-09-26): Teacher first,
@@ -861,11 +861,11 @@ export function AgentSection({
 						    order. */}
 						{sectionedSegments(prompts).map((section) => (
 							<div key={section.id} data-testid={`prompt-section-${section.id}`}>
-								<p className="mb-1 text-xs uppercase tracking-widest text-muted-foreground/70">
+								<p className="mb-1 text-xs uppercase tracking-widest text-font-color-muted-foreground/70">
 									{section.label}
 								</p>
 								{section.hint && (
-									<p className="mb-1 text-xs text-muted-foreground/60">{section.hint}</p>
+									<p className="mb-1 text-xs text-font-color-muted-foreground/60">{section.hint}</p>
 								)}
 								<div className="flex flex-col gap-2">
 									{section.segments.map((info) => segmentRow(info))}

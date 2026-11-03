@@ -84,7 +84,7 @@ test("native step transition moves keyboard focus into the new connection contro
 });
 test("healthy management has only controls, quiet Manage, destructive action left and Close right", async () => {
 	const f = fixture(true); await mount();
-	assert(!row("xai").textContent?.includes("Connected")); assert.match(button("Manage…", row("xai")).className, /text-muted-foreground/);
+	assert(!row("xai").textContent?.includes("Connected")); assert.match(button("Manage…", row("xai")).className, /text-font-color-muted-foreground/);
 	await click(button("Manage…", row("xai")));
 	assert.equal(dialog().querySelector("h2")?.textContent, "Grok");
 	assert(!dialog().querySelector("select")); assert(!dialog().textContent?.includes("Add accounts"));

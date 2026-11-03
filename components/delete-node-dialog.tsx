@@ -54,7 +54,7 @@ export function DeleteNodeBody({
 			onClick={(e) => e.stopPropagation()}
 			className="w-[32rem] max-w-[calc(100vw-2rem)] rounded-xl border bg-card p-5 shadow-xl"
 		>
-			<h2 className="text-sm font-semibold text-destructive">
+			<h2 className="text-sm font-semibold text-font-color-destructive">
 				{nodes.length === 1 ? "Delete node?" : `Delete ${nodes.length} nodes?`}
 			</h2>
 			{/* The node name(s) below the title in JetBrains Mono (owner,
@@ -68,17 +68,17 @@ export function DeleteNodeBody({
 			    more" — the count in the title carries the full number). */}
 			<div className="mt-1.5">
 				{nodes.length === 1 ? (
-					<code data-testid="node-name-code" className="font-mono text-sm text-foreground">
+					<code data-testid="node-name-code" className="font-mono text-sm text-font-color-foreground">
 						{nodes[0]?.name}
 					</code>
 				) : (
-					<code data-testid="node-names-code" className="font-mono text-sm text-foreground">
+					<code data-testid="node-names-code" className="font-mono text-sm text-font-color-foreground">
 						{nodes.slice(0, 8).map((n) => n.name).join(", ")}
 						{nodes.length > 8 ? `, and ${nodes.length - 8} more` : ""}
 					</code>
 				)}
 			</div>
-			<p className="mt-2 text-sm text-muted-foreground" data-testid="node-permanence-line">
+			<p className="mt-2 text-sm text-font-color-muted-foreground" data-testid="node-permanence-line">
 				{nodes.length === 1
 					? "This permanently deletes the node — this cannot be undone."
 					: `This permanently deletes all ${nodes.length} nodes — this cannot be undone.`}
@@ -89,7 +89,7 @@ export function DeleteNodeBody({
 					data-testid="node-delete-failure"
 					className="mt-3 rounded-sm border border-border/60 px-3 py-2 text-xs"
 				>
-					<span className="text-foreground">
+					<span className="text-font-color-foreground">
 						{failure.code === "extraction_running" ? EXTRACTION_RETRY_LINE : failure.error}
 					</span>
 					<button
@@ -97,7 +97,7 @@ export function DeleteNodeBody({
 						data-testid="node-delete-retry"
 						onClick={onRun}
 						disabled={busy}
-						className="ml-3 text-xs text-foreground underline-offset-2 hover:underline disabled:opacity-40"
+						className="ml-3 text-xs text-font-color-foreground underline-offset-2 hover:underline disabled:opacity-40"
 					>
 						Try again
 					</button>
@@ -109,7 +109,7 @@ export function DeleteNodeBody({
 					data-testid="node-delete-cancel"
 					onClick={onClose}
 					disabled={busy}
-					className="rounded-sm px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground disabled:opacity-40"
+					className="rounded-sm px-3 py-1.5 text-xs text-font-color-muted-foreground transition-colors hover:text-font-color-foreground disabled:opacity-40"
 				>
 					Cancel
 				</button>
@@ -121,7 +121,7 @@ export function DeleteNodeBody({
 					// Destructive red (owner, polish round) — the
 					// app's established destructive pair (chat's
 					// refusal banner): border + text, fill on hover.
-					className="rounded-sm border border-destructive/50 bg-destructive/10 px-3 py-1.5 text-xs text-destructive transition-colors hover:bg-destructive/20 disabled:opacity-40"
+					className="rounded-sm border border-destructive/50 bg-destructive/10 px-3 py-1.5 text-xs text-font-color-destructive transition-colors hover:bg-destructive/20 disabled:opacity-40"
 				>
 					{busy ? "Deleting…" : "Delete"}
 				</button>

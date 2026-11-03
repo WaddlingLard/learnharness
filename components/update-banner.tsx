@@ -23,7 +23,7 @@ export default function UpdateBanner() {
 		>
 			<div className="text-sm">
 				<span className="font-medium">LearnHarness {ready.version ?? "update"} is ready</span>
-				<span className="text-muted-foreground"> — restart to finish installing.</span>
+				<span className="text-font-color-muted-foreground"> — restart to finish installing.</span>
 			</div>
 			<button
 				type="button"

@@ -345,7 +345,7 @@ export function ActivitySection({ feed: feedProp }: { feed?: ActivityFeed }) {
 	// alone (the cost span is population, not decoration).
 	return (
 		<section data-testid="activity-section" className="border-t border-border px-3 pb-3 pt-2">
-			<div className="mb-1 flex items-center gap-1.5 text-xs uppercase tracking-widest text-muted-foreground/70">
+			<div className="mb-1 flex items-center gap-1.5 text-xs uppercase tracking-widest text-font-color-muted-foreground/70">
 				<ActivityIcon className="size-3" />
 				Background agents
 				{blobs.length > 0 && (
@@ -413,18 +413,18 @@ function ActivityBlobRow({
 				aria-expanded={detailOpen}
 				className="flex w-full items-center gap-2 pr-7 text-left"
 			>
-				<Icon className="size-3.5 shrink-0 text-muted-foreground" />
+				<Icon className="size-3.5 shrink-0 text-font-color-muted-foreground" />
 				<span className="min-w-0 flex-1">
-					<span className="block truncate font-medium text-card-foreground">{blob.title}</span>
+					<span className="block truncate font-medium text-font-color-card-foreground">{blob.title}</span>
 					{blob.activity ? (
-						<span className="block truncate text-muted-foreground" title={blob.activity}>
+						<span className="block truncate text-font-color-muted-foreground" title={blob.activity}>
 							{blob.activity}
 						</span>
 					) : (
-						<span className="block truncate text-muted-foreground/80">{label}</span>
+						<span className="block truncate text-font-color-muted-foreground/80">{label}</span>
 					)}
 				</span>
-				<span className="flex shrink-0 items-center gap-2 tabular-nums text-muted-foreground">
+				<span className="flex shrink-0 items-center gap-2 tabular-nums text-font-color-muted-foreground">
 					<span data-testid="activity-blob-cost">{planCostLabel(blob.cost, subscriptionLabel(blob.model))}</span>
 					<span data-testid="activity-blob-elapsed">{formatElapsed(now - blob.startedAt)}</span>
 				</span>
@@ -439,7 +439,7 @@ function ActivityBlobRow({
 				disabled={abortState !== undefined}
 				title={abortState === "failed" ? "Abort failed — try again" : "End this background process"}
 				aria-label={`End ${label} in ${blob.title}`}
-				className="absolute right-1 top-1/2 -translate-y-1/2 rounded-md p-1 text-muted-foreground/70 transition-colors hover:bg-destructive/10 hover:text-destructive disabled:opacity-50"
+				className="absolute right-1 top-1/2 -translate-y-1/2 rounded-md p-1 text-font-color-muted-foreground/70 transition-colors hover:bg-destructive/10 hover:text-font-color-destructive disabled:opacity-50"
 			>
 				<SquareIcon className="size-3" />
 			</button>
@@ -447,29 +447,29 @@ function ActivityBlobRow({
 			{detailOpen && (
 				<div
 					data-testid="activity-blob-detail"
-					className="mt-1 flex flex-col gap-1 rounded-lg bg-accent/40 p-2 text-muted-foreground"
+					className="mt-1 flex flex-col gap-1 rounded-lg bg-accent/40 p-2 text-font-color-muted-foreground"
 				>
 					<div className="mb-1.5 flex items-center gap-2">
-						<Icon className="size-3.5 text-muted-foreground" />
+						<Icon className="size-3.5 text-font-color-muted-foreground" />
 						<span className="font-medium">{label}</span>
-						<span className="ml-auto tabular-nums text-muted-foreground">
+						<span className="ml-auto tabular-nums text-font-color-muted-foreground">
 							{formatElapsed(now - blob.startedAt)}
 						</span>
 					</div>
-					<div className="flex flex-col gap-1 text-muted-foreground">
-						<div className="truncate text-card-foreground" title={blob.title}>
+					<div className="flex flex-col gap-1 text-font-color-muted-foreground">
+						<div className="truncate text-font-color-card-foreground" title={blob.title}>
 							{blob.title}
 						</div>
 						{blob.activity && <div className="break-words">{blob.activity}</div>}
 						<div className="flex justify-between gap-2">
 							<span>Cost</span>
-							<span className="tabular-nums text-card-foreground">
+							<span className="tabular-nums text-font-color-card-foreground">
 								{planCostLabel(blob.cost, subscriptionLabel(blob.model))}
 							</span>
 						</div>
 						<div className="flex justify-between gap-2">
 							<span>Context</span>
-							<span className="tabular-nums text-card-foreground" data-testid="activity-blob-context">
+							<span className="tabular-nums text-font-color-card-foreground" data-testid="activity-blob-context">
 								{blob.context === null
 									? "—"
 									: `${formatTokens(blob.context.used)} / ${formatTokens(blob.context.limit)}`}
@@ -478,20 +478,20 @@ function ActivityBlobRow({
 						{blob.model && (
 							<div className="flex justify-between gap-2">
 								<span>Model</span>
-								<span className="truncate text-card-foreground">{blob.model}</span>
+								<span className="truncate text-font-color-card-foreground">{blob.model}</span>
 							</div>
 						)}
 						{blob.steps !== undefined && (
 							<div className="flex justify-between gap-2">
 								<span>Steps</span>
-								<span className="tabular-nums text-card-foreground">{blob.steps}</span>
+								<span className="tabular-nums text-font-color-card-foreground">{blob.steps}</span>
 							</div>
 						)}
-						<a href={`/chat/${blob.chatId}`} className="text-primary hover:underline">
+						<a href={`/chat/${blob.chatId}`} className="text-font-color-primary hover:underline">
 							Open session →
 						</a>
 					</div>
-					<div className="mt-2 text-muted-foreground/80">
+					<div className="mt-2 text-font-color-muted-foreground/80">
 					{abortState === "failed" && "Abort failed — try again"}
 					{abortState === "pending" && "Stopping…"}
 				</div>

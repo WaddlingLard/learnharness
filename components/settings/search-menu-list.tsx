@@ -71,10 +71,10 @@ export function SearchMenuList<T>({
 				}
 			}}
 			placeholder={placeholder}
-			className="lh-input mb-1.5 w-full rounded-lg border bg-background px-2 py-1.5 text-foreground outline-none focus:ring-1 focus:ring-ring"
+			className="lh-input mb-1.5 w-full rounded-lg border bg-background px-2 py-1.5 text-font-color-foreground outline-none focus:ring-1 focus:ring-ring"
 		/>
-		{!items && loading && <div className="px-2 py-3 text-center text-muted-foreground">{loading}</div>}
-		{items && results.length === 0 && <div className="px-2 py-3 text-center text-muted-foreground">{empty}</div>}
+		{!items && loading && <div className="px-2 py-3 text-center text-font-color-muted-foreground">{loading}</div>}
+		{items && results.length === 0 && <div className="px-2 py-3 text-center text-font-color-muted-foreground">{empty}</div>}
 		<ul ref={listRef} data-testid={listTestid} className="flex max-h-72 flex-col overflow-y-auto px-1">
 			{results.map((item, i) => <li key={itemKey(item)}>
 				<button

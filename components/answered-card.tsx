@@ -24,7 +24,7 @@ export function AnsweredCard({ answer: savedAnswer, input }: { answer: QuestionA
 	const [whyOpen, setWhyOpen] = useState(false); // the tucked explanation (predictions, owner 2026-10-03)
 	if (answer.dismissed) {
 		return (
-			<div className="rounded-xl border bg-card p-4 text-sm text-muted-foreground">
+			<div className="rounded-xl border bg-card p-4 text-sm text-font-color-muted-foreground">
 				<span className="font-medium">{answer.questionText}</span> — skipped
 			</div>
 		);
@@ -59,10 +59,10 @@ export function AnsweredCard({ answer: savedAnswer, input }: { answer: QuestionA
 		    p-4 into a 28px void below (12px above); the card's own padding is
 		    the bottom rhythm when a row ends the card. */}
 		<div
-			className="rounded-xl border bg-card p-4 text-card-foreground [&>*:last-child]:mb-0"
+			className="rounded-xl border bg-card p-4 text-font-color-card-foreground [&>*:last-child]:mb-0"
 			data-testid="answered-card"
 		>
-			<div className="mb-1 flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+			<div className="mb-1 flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-font-color-muted-foreground">
 				{/* The tool's OWN name first (owner 2026-10-09): probe-phase
 			    cards label Probe/Recall — the phase boundary visible in the
 			    transcript. No `tool` on old records: kind labels as before. */}
@@ -92,7 +92,7 @@ export function AnsweredCard({ answer: savedAnswer, input }: { answer: QuestionA
 			{parsedDetails && (
 				// The details line, same paint as the pending dock (owner,
 				// 2026-10-12): full markdown, LaTeX included.
-				<div className="mb-3 text-sm text-muted-foreground">
+				<div className="mb-3 text-sm text-font-color-muted-foreground">
 					<ToolContentResponse>{parsedDetails}</ToolContentResponse>
 				</div>
 			)}
@@ -131,13 +131,13 @@ export function AnsweredCard({ answer: savedAnswer, input }: { answer: QuestionA
 										{(key || sel) && <GlyphMark kind={key ? "check" : "x"} className="size-3.5" />}
 									</span>
 								)}
-								<span className={cn(!sel && "text-muted-foreground")}>
+								<span className={cn(!sel && "text-font-color-muted-foreground")}>
 									<ToolContentResponse>{opt.label}</ToolContentResponse>
 									{descByIndex.get(opt.index) && (
 										// Ask-option subtext (owner, 2026-10-12): same markdown path
 										// as the pending dock — LaTeX included. Quiz options carry
 										// none (owner ruling 2026-09-26); the map stays empty for them.
-										<ToolContentResponse className="lh-prose block text-xs text-muted-foreground">
+										<ToolContentResponse className="lh-prose block text-xs text-font-color-muted-foreground">
 											{descByIndex.get(opt.index)}
 										</ToolContentResponse>
 									)}
@@ -171,13 +171,13 @@ export function AnsweredCard({ answer: savedAnswer, input }: { answer: QuestionA
 			{isQuiz && answer.confidence != null && (
 				<div className="mt-3 flex items-center gap-3" data-testid="answered-confidence">
 					<ConfidenceRail value={answer.confidence} className="min-w-0 flex-1" />
-					<span className="w-9 shrink-0 text-right font-mono text-sm tabular-nums text-muted-foreground">
+					<span className="w-9 shrink-0 text-right font-mono text-sm tabular-nums text-font-color-muted-foreground">
 						{answer.confidence}%
 					</span>
 				</div>
 			)}
 			{answer.dontKnow && isQuiz && (
-				<div className="mt-2 text-sm text-muted-foreground">Answered “I don't know”.</div>
+				<div className="mt-2 text-sm text-font-color-muted-foreground">Answered “I don't know”.</div>
 			)}
 
 			{(answer.thinking ?? answer.note) && (
@@ -205,13 +205,13 @@ export function AnsweredCard({ answer: savedAnswer, input }: { answer: QuestionA
 					<button
 						type="button"
 						onClick={() => setWhyOpen((v) => !v)}
-						className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+						className="text-xs font-medium text-font-color-muted-foreground transition-colors hover:text-font-color-foreground"
 					>
 						{whyOpen ? "Hide why" : "Why"}
 					</button>
 					{whyOpen && (
-						<div className="mt-1.5 rounded-lg bg-muted py-2 text-sm text-foreground/50">
-							<span className="font-medium text-muted-foreground">Why: </span>
+						<div className="mt-1.5 rounded-lg bg-muted py-2 text-sm text-font-color-foreground/50">
+							<span className="font-medium text-font-color-muted-foreground">Why: </span>
 							{/* Keep the first paragraph beside the label, not every paragraph:
 							   later paragraphs must retain their recovered document structure. */}
 							<ToolContentResponse className="inline [&>p:first-child]:inline [&>p:first-child]:m-0">{answer.explanation}</ToolContentResponse>
@@ -224,8 +224,8 @@ export function AnsweredCard({ answer: savedAnswer, input }: { answer: QuestionA
 			    — one field, reasoning included — shown on submit; no verdict,
 			    the model's next reply IS the grading. */}
 			{isExplain && answer.committed && (
-				<div className="mt-3 rounded-lg bg-muted py-2 text-sm text-muted-foreground">
-					<span className="font-medium text-foreground">The answer: </span>
+				<div className="mt-3 rounded-lg bg-muted py-2 text-sm text-font-color-muted-foreground">
+					<span className="font-medium text-font-color-foreground">The answer: </span>
 					<ToolContentResponse className="inline [&>p:first-child]:inline [&>p:first-child]:m-0">{answer.committed}</ToolContentResponse>
 				</div>
 			)}

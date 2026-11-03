@@ -121,13 +121,13 @@ export function ThinkingBlock({
 					blurAfterPointerClick(e);
 				}}
 				aria-expanded={open}
-				className="flex w-full items-center gap-2 font-medium uppercase tracking-wide text-muted-foreground transition-colors hover:text-foreground"
+				className="flex w-full items-center gap-2 font-medium uppercase tracking-wide text-font-color-muted-foreground transition-colors hover:text-font-color-foreground"
 			>
 				{label}
 				<ChevronDownIcon className={cn("size-4 shrink-0 transition-transform", open ? "rotate-180" : "rotate-0")} />
 			</button>
 			{open && (
-				<span className="lh-prose mt-1.5 block whitespace-pre-wrap text-[15px] italic text-foreground/50">{text}</span>
+				<span className="lh-prose mt-1.5 block whitespace-pre-wrap text-[15px] italic text-font-color-foreground/50">{text}</span>
 			)}
 		</div>
 	);

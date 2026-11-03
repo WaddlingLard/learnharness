@@ -233,14 +233,14 @@ export function Home({
 									type="button"
 									data-testid="setup-cta"
 									onClick={() => setSetupOpen(true)}
-									className="rounded-sm border border-border bg-card px-3 py-1.5 font-ui text-xs text-foreground transition-colors hover:border-muted-foreground/50 hover:bg-accent cursor-pointer"
+									className="rounded-sm border border-border bg-card px-3 py-1.5 font-ui text-xs text-font-color-foreground transition-colors hover:border-muted-foreground/50 hover:bg-accent cursor-pointer"
 								>
 									Set up your models
 								</button>
 							)
 						)}
 					/>
-					{startError && <p role="alert" className="mb-2 text-sm text-destructive">{OPENING_PROMPT_FAILURE}</p>}
+					{startError && <p role="alert" className="mb-2 text-sm text-font-color-destructive">{OPENING_PROMPT_FAILURE}</p>}
 					<form
 						className="flex items-end gap-1.5 rounded-2xl border bg-card p-1.5 shadow-lg"
 					onSubmit={(e) => {
@@ -273,7 +273,7 @@ export function Home({
 						placeholder={mode === "practice" ? "What do you want to practice?" : "What do you want to learn?"}
 						autoFocus
 						rows={1}
-						className="field-sizing-content lh-input max-h-48 min-h-10 flex-1 resize-none bg-transparent px-2.5 py-2 outline-none placeholder:text-muted-foreground"
+						className="field-sizing-content lh-input max-h-48 min-h-10 flex-1 resize-none bg-transparent px-2.5 py-2 outline-none placeholder:text-font-color-muted-foreground"
 					/>
 					{/* No tooltip on the start square — the ↵ glyph is the
 					    affordance (owner, subtlety round 2026-09-25). */}
@@ -281,7 +281,7 @@ export function Home({
 						type="submit"
 						aria-label="Start session"
 						disabled={(!topic.trim() && !dictation.active) || busy}
-						className="flex size-10 shrink-0 items-center justify-center rounded-[10px] bg-primary text-primary-foreground transition-colors hover:opacity-90 disabled:opacity-40"
+						className="flex size-10 shrink-0 items-center justify-center rounded-[10px] bg-primary text-font-color-primary-foreground transition-colors hover:opacity-90 disabled:opacity-40"
 					>
 						<CornerDownLeftIcon className="size-5" />
 					</button>
@@ -304,8 +304,8 @@ export function Home({
 										className={
 											"flex items-center gap-1 rounded-sm px-2 py-0.5 text-[11px] uppercase tracking-wider transition-colors " +
 											(mode === m
-												? "bg-accent text-foreground"
-												: "text-muted-foreground hover:text-foreground")
+												? "bg-accent text-font-color-foreground"
+												: "text-font-color-muted-foreground hover:text-font-color-foreground")
 										}
 									>
 										{m === "practice" ? <DumbbellIcon aria-hidden="true" className="size-3" /> : null}
